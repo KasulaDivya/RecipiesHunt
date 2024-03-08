@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registration</title>
+    <style>
+        
+            body {
+                background-color: cornflowerblue;
+                background-image: url("https://wallpaperboat.com/wp-content/uploads/2019/10/best-background-for-website-14.jpg");
+                opacity: 0.75;
+                margin: 0;
+                padding: 0;
+            }
+            form {
+                width: 70%;
+                max-width: 700px;
+                margin: 3% auto;
+                border: 3px solid white;
+                background-color: transparent;
+                border-radius: 10px;
+                color: silver;
+                font-size: 18px;
+                font-weight: 200;
+                padding: 20px;
+                text-align: center; /* Center align the content */
+            }
+            input {
+                color: white;
+                margin: 10px auto; /* Center align the input fields */
+                display: block;
+                background-color: transparent;
+                width: 40%;
+                padding: 8px;
+            }
+            #t {
+                margin: 0 auto 10px; /* Center align the confirm password input */
+                display: block;
+            }
+            label {
+                margin-left: 2px;
+            }
+            h1 {
+                color: white;
+                margin-top: 8%;
+                font-size: 35px;
+                text-align: center;
+            }
+            input[type="submit"],
+            input[type="button"] {
+                padding: 8px; /* Smaller button size */
+                font-size: 16px;
+                background-color: bisque; 
+                color: black;
+                border-radius: 10px;/* Smaller font size */
+            }
+        
+            /* Media Queries */
+            @media screen and (max-width: 768px) {
+                form {
+                    width: 90%;
+                    padding: 10px;
+                }
+                input {
+                    width: 90%;
+                }
+            }
+        
+            @media screen and (max-width: 480px) {
+                form {
+                    width: 95%;
+                    padding: 10px;
+                }
+                input {
+                    width: 90%;
+                }
+            }
+    
+        
+        
+    </style>
+</head>
+<body>
+    <h1>Get Register Here...!</h1>
+    <form>
+        <label for="username">Username</label><br>
+        <input type="text" id="username" placeholder="Username"><br>
+        <label for="password">Password</label><br>
+        <input type="password" id="password" placeholder="Password"><br>
+        <label for="confirm_password">Confirm Password</label><br>
+        <input type="password" id="confirm_password" placeholder="Confirm Password" id="t"><br>
+        <input type="submit" value="Register">
+        <input id="login" type="button" value="Log in">
+    </form>
+
+    <script>
+        var form = document.querySelector('form');
+        form.addEventListener("submit", (event) => {
+            event.preventDefault();
+            var username = document.getElementById('username').value;
+            var password = document.getElementById('password').value;
+            var confirm_password = document.getElementById('confirm_password').value;
+
+            if (username !== "" && password !== "" && confirm_password !== "") {
+                if (password !== confirm_password) {
+                    alert("Check the confirm password");
+                } else {
+                    var users = JSON.parse(window.localStorage.getItem("users")) || [];
+                    var userExists = users.some(user => user.username === username);
+                    if (userExists) {
+                        alert("You are already registered.");
+                    } else {
+                        var newUser = {
+                            username: username,
+                            password: password
+                        };
+                        users.push(newUser);
+                        window.localStorage.setItem("users", JSON.stringify(users));
+                        alert("Successfully registered. Please log in now.");
+                        form.reset();
+                    }
+                }
+            } else {
+                alert("Please enter all user details.");
+            }
+        });
+
+        var loginButton = document.getElementById("login");
+        loginButton.addEventListener("click", () => {
+            window.location.assign("index2.html");
+        });
+    </script>
+</body>
+</html>

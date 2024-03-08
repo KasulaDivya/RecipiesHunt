@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <style>
+        body {
+            background-image: url(./div.jpg);
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .container {
+            text-align: center;
+        }
+        form {
+            border: 2px solid white;
+            width: 150%;
+            max-width: 500px;
+            height: auto;
+            padding: 20px;
+            background: transparent;
+            backdrop-filter: blur(8px);
+            margin-bottom: 20px;
+            display: inline-block;
+            margin-left: -30%;
+        }
+        h1 {
+            color: white;
+            font-weight: normal;
+            text-align: center;
+            margin-top: 0;
+            margin-bottom: 20px;
+        }
+        input {
+            background-color: transparent;
+            border: none;
+            border-bottom: 1px solid white;
+            margin: 10px auto;
+            display: block;
+            padding: 8px;
+            color: white;
+            width: 80%;
+        }
+        p {
+            color: white;
+            display: inline;
+        }
+        button {
+            border: none;
+            background-color: rgb(215, 76, 99);
+            color: white;
+            border-radius: 3px;
+            padding: 10px;
+            width: 80%;
+            cursor: pointer;
+
+        }
+        #ff{
+            background-color: pink;
+            color: black;
+            border: 2px solid purple;
+            border-radius: 5px;
+        }
+        /* Media Queries */
+        @media screen and (max-width: 600px) {
+            form {
+                width: 80%;
+            }
+            input, button {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <form>
+            <h1>Login</h1>
+            <input type="text" placeholder="Username">
+            <input type="password" placeholder="Password">
+            <input type="checkbox"> <p>Remember me</p>
+            <input type="submit" value="Login" id="ff">
+        </form>
+        <button class="go-back">Go Back</button>
+    </div>
+
+    <script>
+        var backButton = document.querySelector(".go-back");
+        backButton.addEventListener("click", () => {
+            window.location.assign("./index.html");
+        });
+
+        var form = document.querySelector("form");
+        form.addEventListener("submit", (event) => {
+            event.preventDefault();
+            var username = event.target[0].value;
+            var password = event.target[1].value;
+
+            if (username !== "" && password !== "") {
+                // Authentication logic goes here
+                // For demonstration, let's just alert a message
+                alert("Login successful!");
+                // Redirect to another page
+                window.location.assign("./index3.html");
+            } else {
+                alert("Please fill in all fields.");
+            }
+
+            event.target[0].value = "";
+            event.target[1].value = "";
+        });
+    </script>
+</body>
+</html>
